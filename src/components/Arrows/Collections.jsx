@@ -12,7 +12,7 @@ const Collections = () => {
    <>
     {/* <div className='w-screen h-screen bg-black'/> */}
     <Arrows/>
-    <div className='w-screen h-[30vw] bg-black'/>
+    <div className='w-screen h-[30vw] bg-black '/>
     <ArrowsOpacity/>
     <div className='w-screen h-[30vw] bg-black'/>
     <ArrowsLimit/>

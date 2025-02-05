@@ -140,7 +140,7 @@ const Arrows = () => {
   }, []);
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full bg-white">
       <canvas 
         ref={canvasRef}
         className="w-full h-full"

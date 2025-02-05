@@ -83,7 +83,7 @@ const GlowingOrbMaterial = ({ color1, color2, position1, position2 }) => {
 // Main component
 const GlowingOrbsOnPlane = () => {
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen bg-white">
       <Canvas style={{background:"white"}}>
         <mesh>
           <planeGeometry args={[14, 8]}/>

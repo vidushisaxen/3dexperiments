@@ -128,14 +128,19 @@ const ArrowsOpacity = () => {
   }, []);
 
   return (
-    <canvas 
-      ref={canvasRef}
-      style={{
-        width: '100%',
-        height: '100%',
-        pointerEvents: 'none'
-      }}
-    />
+    <div className='bg-white'>
+
+
+
+      <canvas 
+        ref={canvasRef}
+        style={{
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none'
+        }}
+      />
+    </div>
   );
 };
 
