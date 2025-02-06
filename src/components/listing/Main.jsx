@@ -23,60 +23,6 @@ const projects = [
 ];
 
 const Main = () => {
-  // useEffect(() => {
-  //   gsap.registerPlugin(ScrollTrigger);
-
-  //   // Select all cards
-  //   const cards = document.querySelectorAll('.card');
-    
-  //   cards.forEach((card, index) => {
-  //     gsap.fromTo(
-  //       card,
-  //       {
-  //         opacity: 0,
-  //         scale: 0.8,
-  //         y: 300,
-  //         filter: "blur(5px)",
-  //       },
-  //       {
-  //         opacity: 1,
-  //         y: 0,
-  //         scale: 1,
-  //         filter: "blur(0px)",
-  //         scrollTrigger: {
-  //           trigger: card,
-  //           start: "top bottom", 
-  //           end: "bottom top", 
-  //           toggleActions: "play none none none", // Triggers animation every time the card enters the viewport
-  //           onEnter: () => {
-  //             gsap.to(card, {
-  //               opacity: 1,
-  //               y: 0,
-  //               scale: 1,
-  //               filter: "blur(0px)",
-  //               duration: 1.5,
-  //               ease: "power3.out",
-  //             });
-  //           },
-  //           onLeaveBack: () => {
-  //             gsap.to(card, {
-  //               opacity: 0,
-  //               y: 300,
-  //               scale: 0.8,
-  //               filter: "blur(5px)",
-  //               duration: 1.5,
-  //               ease: "power3.out",
-  //             });
-  //           },
-  //         },
-  //       }
-  //     );
-  //   });
-
-  //   // Ensure scroll triggers are refreshed when new content is added
-  //   ScrollTrigger.refresh();
-
-  // }, []); // Run only once when the component is mounted
 
   return (
     <section id="main" className="h-full w-screen">
