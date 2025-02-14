@@ -1,9 +1,9 @@
-import { Canvas } from "@react-three/fiber";
 import { useState, useEffect, useRef } from "react";
 import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap"; // Import GSAP
+import R3FCanvas from "@/components/listing/View";
 
 const BlobsShader = ({ color }) => {
   const fragmentShader = `
@@ -177,9 +177,9 @@ const VanaBg = () => {
       <div
         className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none"
       >
-        <Canvas>
+        <R3FCanvas>
           <BlobsShader color={color} />
-        </Canvas>
+        </R3FCanvas>
       </div>
 
       {/* Scrollable Content */}

@@ -20,7 +20,7 @@ const Header = () => (
           alt="enigma-logo"
           height={50}
           width={50}
-          className="dark:invert header-logo transparent"
+          className=" header-logo transparent"
         />
       </div>
     </Link>

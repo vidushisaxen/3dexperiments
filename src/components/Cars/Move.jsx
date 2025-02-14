@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import {useFrame } from "@react-three/fiber";
 import { Circle, Environment, OrbitControls, PerspectiveCamera, Plane, Text, useGLTF } from "@react-three/drei";
 import { gsap } from "gsap";
+import R3FCanvas from "../listing/View";
 
 const models = [
     {
@@ -220,7 +221,7 @@ const Motion = () => {
 
   return (
     <>
-      <Canvas
+      <R3FCanvas
         style={{
           height: "100vh",
           width: "100vw",
@@ -252,7 +253,7 @@ const Motion = () => {
         </MotionEffect>
         
         {/* <OrbitControls enabled={!isAnimating} enableZoom={false}/> */}
-      </Canvas>
+      </R3FCanvas>
 
       <div 
         style={{

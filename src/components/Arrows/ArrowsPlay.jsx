@@ -55,32 +55,39 @@ const ArrowsPlay = () => {
     
     const xPadding = (canvas.width - (cols * spacing)) / 2;
     const yPadding = (canvas.height - (rows * spacing)) / 2;
-
-    // Get div position and size
+  
+    // Get div position relative to canvas
     const divRect = divRef.current.getBoundingClientRect();
-
+    const canvasRect = canvas.getBoundingClientRect();
+    
+    const divLeft = divRect.left - canvasRect.left;
+    const divRight = divRect.right - canvasRect.left;
+    const divTop = divRect.top - canvasRect.top;
+    const divBottom = divRect.bottom - canvasRect.top;
+  
     for (let y = 0; y <= rows; y++) {
       for (let x = 0; x <= cols; x++) {
         const arrowPos = new Point(
           x * spacing + xPadding,
           y * spacing + yPadding
         );
-
-        // Skip arrows that fall inside the div's area
+  
+        
         if (
-          arrowPos.x >= divRect.left && 
-          arrowPos.x <= divRect.right && 
-          arrowPos.y >= divRect.top && 
-          arrowPos.y <= divRect.bottom
+          arrowPos.x >= divLeft && 
+          arrowPos.x <= divRight && 
+          arrowPos.y >= divTop && 
+          arrowPos.y <= divBottom
         ) {
-          continue; // Skip this arrow
+          continue; 
         }
-
+  
         arrows.push(new Arrow(arrowPos));
       }
     }
     return arrows;
   };
+  
 
   const handleResize = () => {
     const canvas = canvasRef.current;
@@ -164,7 +171,7 @@ const ArrowsPlay = () => {
           backgroundColor: "transparent", 
         }}
       >
-        <h1 className='text-[18vw] text-whitefont-medium group-hover:text-gray-500 transition-all ease duration-500'>Play</h1>
+        <h1 className='text-[18vw] text-white font-medium group-hover:text-gray-500 transition-all ease duration-500'>Play</h1>
       </div>
     </div>
   );

@@ -1,15 +1,14 @@
 export const OPTS = {
-    blend: 5,
+    blend: 3,
     intensity: 2,
-    force: 1.1,
+    force: 0.5,
     distortion: 0.4,
-    curl: 1.9,
+    curl: 1.5,
     radius: 0.3,
-    swirl: 4,
-
-    pressure: 0.8,
-    densityDissipation: 0.96,
-    velocityDissipation: 1.0,
+    swirl: 2,
+    pressure: 0.2,
+    densityDissipation: 0.48,
+    velocityDissipation: 0.5,
 
     fluidColor: '#3300ff',
     backgroundColor: '#070410',

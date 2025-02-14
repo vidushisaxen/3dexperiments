@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const ArrowsLimit = ({ rows = 3, columns = 9 }) => {
+const ArrowsLimit = ({ rows = 5, columns = 10 }) => {
   const canvasRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const arrowsRef = useRef([]);
@@ -25,8 +25,8 @@ const ArrowsLimit = ({ rows = 3, columns = 9 }) => {
     update(mouseX, mouseY) {
       const targetDx = mouseX - this.pos.x;
       const targetDy = mouseY - this.pos.y;
-      this.dx += (targetDx - this.dx) * this.ease*0.2;
-      this.dy += (targetDy - this.dy) * this.ease*0.2;
+      this.dx += (targetDx - this.dx) * this.ease*0.35;
+      this.dy += (targetDy - this.dy) * this.ease*0.35;
       this.angle = Math.atan2(this.dy, this.dx);
     }
   

@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useRef } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls, useGLTF, PerspectiveCamera } from '@react-three/drei';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,7 +75,7 @@ function Scene() {
 export default function modelrotation() {
   return (
     <div className="relative">
-      <div className="fixed top-0 left-0 w-full h-screen bg-black">
+      <div className="fixed top-0 left-0 w-full h-screen bg-[#222222]">
         <Canvas
           gl={{
             antialias: true,
@@ -92,7 +92,7 @@ export default function modelrotation() {
               near={0.25} 
               far={20} 
             />
-            <ambientLight intensity={0.5} />
+            <ambientLight intensity={4} />
             <directionalLight position={[5, 5, 5]} intensity={1.5} castShadow />
             <directionalLight position={[-5, 5, 5]} intensity={0.8} />
             <Scene />

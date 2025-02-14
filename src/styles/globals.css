@@ -1,42 +1,52 @@
+@import url("./fonts.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 body{
   margin:0;
   padding:0;
   overflow-y: scroll;
-  background-color: #1a1a1a;
+  overflow-x:hidden;
+  background-color: #e5e4e4;
+  width: "100vw";
+  font-family: "Aeonik";
 
 }
 ::-webkit-scrollbar{
   display: none;
   visibility: hidden;
 }
+.blobifyCanvas{
+  height: "100vh";
+  width: "100vw";
+  overflow: hidden;
+}
+.stroke-text{
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: white;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
-.scrollable {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    will-change: transform;
-  }
-  
-  .image-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }  
-  .curve-plane-img{
-    position: absolute;
-    height: 60%;
-    visibility: hidden;
-  }
+.marquee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5vw;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 10s linear infinite;
+}
 
-  
+
+
 
 

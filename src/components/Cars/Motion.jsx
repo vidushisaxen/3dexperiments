@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import {useFrame } from "@react-three/fiber";
 import { Environment, Html, OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { gsap } from "gsap";
+import R3FCanvas from "../listing/View";
 
 const models = [
     {
@@ -359,7 +360,7 @@ const Motion = () => {
             onWheel={handleScroll}
             style={{ height: "100vh", width: "100vw", overflow: "hidden", backgroundColor:"#000000", color:"#d1d1d1" }}
         >
-            <Canvas
+            <R3FCanvas
                 style={{
                     height: "100%",
                     width: "100%",
@@ -462,7 +463,7 @@ const Motion = () => {
                         </div>
                     </Html>
                 )}
-            </Canvas>        
+            </R3FCanvas>        
         </div>
     );
 };

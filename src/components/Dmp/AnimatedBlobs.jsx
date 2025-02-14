@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import {useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import useRouteChange from './hooks/useRouteChange';
+import R3FCanvas from '../listing/View';
 
 const BlobsShader = ({ colors, scrollSpeed }) => {
   const fragmentShader = `
@@ -139,9 +140,9 @@ const AnimatedBlobs = () => {
   
     return (
       <div className="w-full h-full fixed top-0 left-0 z-[-1] canvas-animation">
-        <Canvas style={{ height: '100%', width: '100vw' }}>
+        <R3FCanvas style={{ height: '100%', width: '100vw' }}>
           <BlobsShader colors={colors} scrollSpeed={scrollSpeed} />
-        </Canvas>
+        </R3FCanvas>
       </div>
     );
   };

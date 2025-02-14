@@ -7,7 +7,7 @@ const Points = () => {
   const animationFrameRef = useRef(null);
   const mouseEnteredRef = useRef(false); 
   const [lineLength, setLineLength] = useState(0); 
-  const maxLineLength = 20; 
+  const maxLineLength = 25; 
   const easingSpeed = 0.05; 
 
   class Point {
@@ -35,7 +35,7 @@ const Points = () => {
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(lineEndX, lineEndY);
         ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 1.5;
         ctx.stroke();
       } else {
         ctx.beginPath();
@@ -48,7 +48,7 @@ const Points = () => {
 
   const initializePoints = (canvas) => {
     const points = [];
-    const spacing = 50;
+    const spacing = 60;
     const cols = Math.floor(canvas.width / spacing);
     const rows = Math.floor(canvas.height / spacing);
 
@@ -78,18 +78,12 @@ const Points = () => {
   const handleMouseMove = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
-
-    if (
-      e.clientX >= rect.left &&
-      e.clientX <= rect.right &&
-      e.clientY >= rect.top &&
-      e.clientY <= rect.bottom
-    ) {
-      mouseRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      };
-    }
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    mouseRef.current = {
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY,
+    };
   };
 
   const handleMouseEnter = () => {
@@ -130,17 +124,17 @@ const Points = () => {
 
     pointsRef.current = initializePoints(canvas);
     window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseenter', handleMouseEnter);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
+    // canvas.addEventListener('mouseleave', handleMouseLeave);
 
     main();
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseenter', handleMouseEnter);
-      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      // canvas.removeEventListener('mouseleave', handleMouseLeave);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -152,7 +146,7 @@ const Points = () => {
       <canvas 
         ref={canvasRef}
         className="w-full h-full"
-        style={{ cursor: 'none' }}
+        style={{ cursor: 'pointer' }}
       />
     </div>
   );

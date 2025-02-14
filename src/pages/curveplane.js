@@ -5,7 +5,7 @@ const curveplane = () => {
   return (
     <>
     <DistortionCanvas/>
-    </>
+    </> 
   )
 }
 

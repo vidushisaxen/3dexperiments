@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
-import { Canvas, useFrame } from "@react-three/fiber";
+import {useFrame } from "@react-three/fiber";
 import { Sphere, shaderMaterial } from "@react-three/drei";
 import { extend } from "@react-three/fiber";
+import R3FCanvas from "@/components/listing/View";
 
 // Shader Material with Perlin Noise & Blended Red Sphere
 const NoiseShaderMaterial = shaderMaterial(
@@ -143,12 +144,12 @@ const Noise = () => {
 
   return (
     <div className="w-screen h-screen fixed top-0 left-0">
-      <Canvas>
+      <R3FCanvas>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 0]} intensity={1} />
         <NoiseSphere uResolution={resolution} />
         <RedSphere />
-      </Canvas>
+      </R3FCanvas>
     </div>
   );
 };
