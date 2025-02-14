@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
-import {useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Sphere, shaderMaterial } from "@react-three/drei";
 import { extend } from "@react-three/fiber";
 import R3FCanvas from "@/components/listing/View";
+import Image from "next/image";
+import {ReactLenis} from "lenis/react"
 
 // Shader Material with Perlin Noise & Blended Red Sphere
 const NoiseShaderMaterial = shaderMaterial(
@@ -107,14 +109,16 @@ const NoiseSphere = ({ uResolution }) => {
       materialRef.current.uTime = clock.getElapsedTime();
       materialRef.current.uResolution = uResolution;
     }
-
-   
   });
 
   return (
-    <mesh ref={sphereRef} rotation={[0,-1,0]} position={[0,-0.5,0]}>
+    <mesh ref={sphereRef} rotation={[0, -1, 0]} position={[0, -0.5, 0]}>
       <Sphere args={[4.5, 128, 128]}>
-        <noiseShaderMaterial ref={materialRef} uResolution={uResolution} side={THREE.DoubleSide} />
+        <noiseShaderMaterial
+          ref={materialRef}
+          uResolution={uResolution}
+          side={THREE.DoubleSide}
+        />
       </Sphere>
     </mesh>
   );
@@ -136,21 +140,87 @@ const Noise = () => {
   const [resolution, setResolution] = useState(new THREE.Vector2(0, 0));
 
   useEffect(() => {
-    const handleResize = () => setResolution(new THREE.Vector2(window.innerWidth, window.innerHeight));
+    const handleResize = () =>
+      setResolution(new THREE.Vector2(window.innerWidth, window.innerHeight));
     window.addEventListener("resize", handleResize);
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div className="w-screen h-screen fixed top-0 left-0">
-      <R3FCanvas>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 0]} intensity={1} />
-        <NoiseSphere uResolution={resolution} />
-        <RedSphere />
-      </R3FCanvas>
-    </div>
+    <>
+    <ReactLenis root options={{ lerp: 0.07 }}>
+
+      <div className="w-screen h-screen fixed top-0 left-0 z-[-1]">
+        <R3FCanvas>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 0]} intensity={1} />
+          <NoiseSphere uResolution={resolution} />
+          <RedSphere />
+        </R3FCanvas>
+      </div>
+      <div className="w-screen h-[60vw] px-[5vw] flex flex-col gap-[1.5vw] text-white justify-center">
+        <h1 className="text-[8vw] w-[80%] leading-[1]">
+          Crafting Visual Experiences That{" "}
+          <span className="italic">Inspire</span>
+        </h1>
+        <p className="text-[1.5vw] w-[50%]">
+          We are a creative design agency turning bold ideas into stunning
+          visuals that captivate and drive results.
+        </p>
+      </div>
+      <section className="w-screen h-full px-[5vw] py-[5%]">
+        <div className=" w-full flex justify-between text-white">
+          <div className="w-[20%]">
+            <p className="text-[1.4vw] ml-[3vw]">
+              About
+
+            </p>
+          </div>
+          <div className="w-[65%] ">
+            <p className="text-[1.8vw]">
+              We are a team of passionate creatives driven by a love for design
+              and innovation. From branding to digital experiences, we blend
+              aesthetics with functionality to bring your vision to life.
+            </p>
+          </div>
+        </div>
+        <div className="w-[90vw] h-[40vw] rounded-[2vw] overflow-hidden mt-[5vw]">
+          <Image src={"/assets/noise/noise-1-img.jpg"} alt="" className="w-full h-full object-cover" width={920} height={700}/>
+
+        </div>
+      </section>
+      <section className="w-screen h-screen py-[5%] px-[5vw]">
+        <div className="flex flex-col gap-[5vw] text-white">
+          <h2 className="text-[4.5vw]">
+          Our Work Speaks for Itself
+
+          </h2>
+          <div className="w-full flex justify-between">
+            <div className="w-[48%] h-[30vw] rounded-[1.2vw] overflow-hidden">
+              <Image src={"/assets/noise/noise-2-img.jpg"} alt="" width={920} height={700} className="w-full h-full object-cover"/>
+
+            </div>
+            <div className="w-[48%] h-[30vw] rounded-[1.2vw] overflow-hidden">
+              <Image src={"/assets/noise/noise-3-img.jpg"} alt="" width={920} height={700} className="w-full h-full object-cover"/>
+
+            </div>
+
+          </div>
+          <div>
+
+          </div>
+
+        </div>
+
+      </section>
+      <section className="w-screen h-screen flex justify-center items-center text-[12vw] text-white">
+        CONTACT US
+
+      </section>
+
+    </ReactLenis>
+    </>
   );
 };
 

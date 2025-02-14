@@ -9,9 +9,9 @@ const Chromotion = () => {
   const uniformLocationsRef = useRef({});
 
   const circleColors = [
-    [18 / 255, 113 / 255, 1.0],
-    [221 / 255, 74 / 255, 1.0],
-    [100 / 255, 220 / 255, 1.0],
+      [250/255, 129/255, 47/255],
+      [250/255, 177/255, 47/255],
+      [250/255, 64/255, 50/255],
     [200 / 255, 50 / 255, 50 / 255],
     [180 / 255, 180 / 255, 50 / 255],
     [140 / 255, 100 / 255, 1.0],
@@ -91,9 +91,11 @@ const Chromotion = () => {
       const radius = baseRadius;
       const x = Math.random() * width;
       const y = Math.random() * height;
-      const speedMultiplier = Math.random() * 9 + 1;
+      const speedMultiplier = Math.random() * 9 ;
+    
       const vx = (Math.random() - 0.5) * speedMultiplier;
       const vy = (Math.random() - 0.5) * speedMultiplier;
+      
       circles.push({
         x,
         y,

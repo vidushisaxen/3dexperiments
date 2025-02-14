@@ -27,6 +27,7 @@ const AnimatedMagicalMaterial = animated(MagicalMaterial);
 const Blob = ({ material, map, geometry }) => {
   const meshRef = useRef();
   const { scale, rotate } = geometry;
+  console.log(scale,rotate)
   let isWheelEventTriggered = false;
   let scrollTimeout = null;
   const { scrollYProgress } = useScroll();

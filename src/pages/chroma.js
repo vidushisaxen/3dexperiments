@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from 'react'
 import { Canvas, extend, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import {ReactLenis} from "lenis/react"
 
 /**
  * We'll define a CustomShaderMaterial that has iDir uniform
@@ -179,8 +180,41 @@ const ShaderPlane = () => {
 
 export default function ChromaMouseDirection(){
   return (
-    <Canvas style={{ width:"100vw", height:"100vh" }}>
+    <>
+    <ReactLenis root options={{ lerp: 0.07 }}>
+
+    <div className=''>
+    <Canvas style={{ width:"100vw", height:"100vh", position:"fixed", top:"0", left:"0" ,zIndex:-1, pointerEvents:"auto"}}>
       <ShaderPlane/>
     </Canvas>
+
+    </div>
+    <div className='w-screen h-screen px-[5vw] flex flex-col gap-[3vw] justify-center items-center relative z-[10]'>
+      <h1 className='text-[8vw] text-[#2a2a2a] leading-[1.1] w-[70%] italic text-center'>
+      Where Creativity Meets Purpose
+
+      </h1>
+      <p className='text-[1.5vw] w-[60%]'>
+
+      </p>
+
+    </div>
+    <section className='w-screen h-screen px-[5vw] py-[5%]'>
+      <div className='w-screen flex justify-between'>
+        <div className='w-[48%] flex flex-col'>
+          <h2 className='text-[4vw]'>
+          About-Us
+
+          </h2>
+        </div>
+       
+      </div>
+
+
+    </section>
+
+    </ReactLenis>
+    
+    </>
   )
 }
