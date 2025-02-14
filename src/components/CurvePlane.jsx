@@ -8,10 +8,10 @@ uniform vec2 uOffset;
 varying vec2 vUv;
 
 #define M_PI 3.1415926535897932384626433832795
-
+ 
 vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
-   position.x = position.x + (sin(uv.y * M_PI) * offset.x);
-   position.y = position.y + (sin(uv.x * M_PI) * offset.y);
+   position.x = position.x + (sin(uv.y * M_PI) * offset.y);
+   position.y = position.y + (sin(uv.x * M_PI) * offset.x);
    return position;
 }
 
@@ -30,7 +30,7 @@ uniform vec2 uOffset;
 varying vec2 vUv;
 
 vec3 rgbShift(sampler2D textureImage, vec2 uv, vec2 offset) {
-   float r = texture2D(textureImage, uv + offset).r;
+   float r = texture2D(textureImage, uv + offset.x).r;
    vec2 gb = texture2D(textureImage, uv).gb;
    return vec3(r, gb);
 }
@@ -98,7 +98,7 @@ const DistortionCanvas = () => {
     function smoothScroll() {
       targetRef.current = window.scrollY;
       currentRef.current = lerp(currentRef.current, targetRef.current, easeRef.current);
-      scrollable.style.transform = `translate3d(0, ${-currentRef.current}px, 0)`;
+      scrollable.style.transform = `translate3d(${-currentRef.current/1.1}px, 0 , 0)`;
     }
 
     function render() {
@@ -158,16 +158,16 @@ const DistortionCanvas = () => {
         getDimensions();
         mesh.position.set(offset.x, offset.y, 0);
         mesh.scale.set(sizes.x, sizes.y, 1);
-        uniforms.uOffset.value.set(0, -(targetRef.current - currentRef.current) * 0.0003);
+        uniforms.uOffset.value.set(0, -(targetRef.current - currentRef.current) * 0.0005);
       },
     };
   }
 
   return (
     <main ref={containerRef} style={{ position: "fixed", width: "100%", height: "100vh" }}>
-      <div className="scrollable" ref={scrollableRef} style={{ position: "absolute", top: 0, left: 0, width: "100%" }}>
-        <div className="container flex flex-col items-center justify-center">
-          <div className="image-container">
+      <div className="scrollable h-[150vw]" ref={scrollableRef} style={{ position: "absolute", top: 0, left: 0, width: "100%" }}>
+        <div className="w-[170vw] ml-[10vw] flex items-center justify-between">
+          <div className="image-container ">
             <img src="/assets/curveplane/space.png" alt="Space" className="curve-plane-img" />
           </div>
           <div className="image-container">
