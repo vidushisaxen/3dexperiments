@@ -7,10 +7,10 @@ import { easing } from 'maath'
 import '../util'
 import { EffectComposer } from "@react-three/postprocessing";
 import { Fluid } from "@/lib";
-import { Providers } from "../Blobify/providers";
-import Home from "../Blobify/Home";
 
 const planeData = [
+  { texture: "/assets/listing/blob-mixer-listing.png", text: "Blob Mixer", link: "/blobmixer" },
+  { texture: "/assets/listing/chromotion-cursor-listing.png", text: "Chromotion Cursor", link: "/chromotion-cursor" },
   { texture: "/assets/listing/earth-listing.png", text: "Earth", link: "/earth" },
   { texture: "/assets/listing/night-earth-listing.png", text: "Night Earth", link: "/nightEarth" },
   { texture: "/assets/listing/arrows-listing.png", text: "Arrows", link: "/arrows" },
@@ -24,21 +24,23 @@ const planeData = [
   { texture: "/assets/listing/furniverse-listing.png", text: "Furniverse", link: "/furniverse" },
   { texture: "/assets/listing/model-rotation-listing.png", text: "Model Rotation", link: "/modelrotation" },
   { texture: "/assets/listing/color-changing-listing.png", text: "Color Changing", link: "/color-changing-background" },
-  { texture: "/assets/listing/route-color-listing.png", text: "Route Color", link: "/route-color-change" },
-  { texture: "/assets/listing/blob-mixer-listing.png", text: "Blob Mixer Color", link: "/blobmixer" },
-
+  { texture: "/assets/listing/route-color-listing.png", text: "Route Color", link: "/routecolor/route-color-change" },
+  { texture: "/assets/listing/blob-mixer-listing.png", text: "Blob Mixer", link: "/blobmixer" },
+  { texture: "/assets/listing/chromotion-cursor-listing.png", text: "Chromotion Cursor", link: "/chromotion-cursor" },
+  { texture: "/assets/listing/earth-listing.png", text: "Earth", link: "/earth" },
+  { texture: "/assets/listing/night-earth-listing.png", text: "Night Earth", link: "/nightEarth" },
   
+
 ];
-
-
 function Rig(props) {
   const ref = useRef();
   const scroll = useScroll();
 
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.y = -scroll.offset * Math.PI * 4;
-      ref.current.position.y = THREE.MathUtils.lerp(0, 2.5, scroll.offset * 8.35);
+      ref.current.rotation.y = -scroll.offset * Math.PI * 4.0005;
+      ref.current.position.y = THREE.MathUtils.lerp(0, 2.9, scroll.offset * 9.93
+      );
       state.camera.lookAt(0, 0, 0); 
     }
   });
@@ -47,17 +49,17 @@ function Rig(props) {
 }
 function Carousel({ radius = 5, planeData = [] }) {
   return planeData.map((plane, i) => (
-    <group key={i}>
+    <group key={i} rotation={[0, -1.6, 0]} position={[0, 3.5, 0]}>
       <Card
         url={plane.texture}
         text={plane.text}
         link={plane.link}
         position={[
-          Math.sin((i / planeData.length) * Math.PI * 4) * radius,
-          i * -1.5,
-          Math.cos((i / planeData.length) * Math.PI * 4) * radius
+          Math.sin((i / planeData.length) * Math.PI * 5) * radius,
+          i * -1.8,
+          Math.cos((i / planeData.length) * Math.PI * 5) * radius
         ]}
-        rotation={[0, Math.PI * 2 + (i / planeData.length) * Math.PI * 4, 0]}
+        rotation={[0  , Math.PI * 2 + (i / planeData.length) * Math.PI * 5, 0]}
       />
     </group>
   ));
@@ -88,7 +90,7 @@ function Card({ url, text, link, ...props }) {
         <bentPlaneGeometry args={[0.5, 4, 3, 20, 20]} />
       </Image>
       <Text
-        position={[0, -1.5, 0]}
+        position={[0, -1.7, 0.3]}
         fontSize={0.2}
         color="black"
         anchorX="center"
@@ -107,18 +109,15 @@ const BlobScene = () => {
       camera={{ position: [0, 0, 30], fov: 15 }}
       style={{ width: "100vw", height: "100vh", zIndex:"5", position:"fixed", top:"0", left:"0", pointerEvents:"auto" }}
     >
-      <EffectComposer>
+      {/* <EffectComposer>
         <Fluid/>
-      </EffectComposer>
-      <ScrollControls pages={4}>
+      </EffectComposer> */}
+      <ScrollControls pages={4} infinite>
         <Rig>
           <Carousel planeData={planeData} />
         </Rig>
       </ScrollControls>
     </Canvas>
-    {/* <Providers>
-    <Home/>
-    </Providers> */}
     </>
   );
 };

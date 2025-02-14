@@ -15,16 +15,19 @@ const Home = () => {
         if (current === pages.length - 1) {
           setCurrent(0);
         } else {
-          setCurrent(current + 1);
+          setCurrent((next) => Math.max(0, Math.min(pages.length - 1, next + 1)));
+          
         }
         console.log("next");
       }
       if (lastAction === "prev") {
         if (current === 0) {
-          setCurrent(pages.length - 1);
-        } else {
-          setCurrent(current - 1);
+          // setCurrent(pages.length - 1);
+          setCurrent((prev) => Math.max(0, Math.min(pages.length - 1, prev + 1)));
         }
+         else {
+          setCurrent((prev) => Math.max(0, Math.min(pages.length - 1, prev + 1)));
+         }
         console.log("prev");
       }
     }

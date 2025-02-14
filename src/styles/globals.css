@@ -30,6 +30,7 @@ body{
 .stroke-text{
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: white;
+  color: transparent;
 }
 @keyframes marquee {
   from { transform: translateX(0); }

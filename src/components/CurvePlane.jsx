@@ -10,8 +10,8 @@ varying vec2 vUv;
 #define M_PI 3.1415926535897932384626433832795
  
 vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
-   position.x = position.x + (sin(uv.y * M_PI) * offset.y);
-   position.y = position.y + (sin(uv.x * M_PI) * offset.x);
+   position.x = position.x + (sin(uv.y * M_PI) * offset.x);
+   position.y = position.y + (sin(uv.x * M_PI) * offset.y);
    return position;
 }
 
@@ -92,7 +92,7 @@ const DistortionCanvas = () => {
     function smoothScroll() {
       targetRef.current = window.scrollY;
       currentRef.current = lerp(currentRef.current, targetRef.current, easeRef.current);
-      scrollable.style.transform = `translate3d(${-currentRef.current/1.1}px, 0 , 0)`;
+      scrollable.style.transform = `translate3d(0, ${-currentRef.current/1.1}px , 0)`;
     }
 
     function render() {

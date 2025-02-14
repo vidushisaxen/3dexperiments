@@ -4,6 +4,10 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap"; // Import GSAP
 import R3FCanvas from "@/components/listing/View";
+import Link from "next/link";
+import Image from "next/image";
+import { ReactLenis } from 'lenis/react'
+
 
 const BlobsShader = ({ color }) => {
   const fragmentShader = `
@@ -130,7 +134,7 @@ const VanaBg = () => {
         newColor = new THREE.Color(0x6900eb);
         break;
       case 2:
-        newColor = new THREE.Color(0x000000);
+        newColor = new THREE.Color(0x6900eb);
         break;
       case 3:
         newColor = new THREE.Color(0xdd5001);
@@ -139,7 +143,7 @@ const VanaBg = () => {
         newColor = new THREE.Color(0xdd5001);
         break;
       case 5:
-        newColor = new THREE.Color(0x000000);
+        newColor = new THREE.Color(0xdd5001);
         break;
       case 6:
         newColor = new THREE.Color(0x8e030a);
@@ -148,7 +152,7 @@ const VanaBg = () => {
         newColor = new THREE.Color(0x8e030a);
         break;
       case 8:
-        newColor = new THREE.Color(0x000000);
+        newColor = new THREE.Color(0x8e030a);
         break;
       default:
         newColor = new THREE.Color(0x6900eb);
@@ -172,6 +176,7 @@ const VanaBg = () => {
   }, []);
 
   return (
+    <ReactLenis root options={{lerp: 0.07}}>
     <>
       {/* Background Shader Canvas */}
       <div
@@ -181,19 +186,156 @@ const VanaBg = () => {
           <BlobsShader color={color} />
         </R3FCanvas>
       </div>
+      <header className="w-screen flex items-center justify-between text-white text-[1.3vw] bg-black/30 py-[1.5vw] px-[2vw] fixed top-0 left-0 z-[99]">
 
-      {/* Scrollable Content */}
-      <div className="relative w-full min-h-[800vh]">
-        {Array.from({ length: 9 }).map((_, index) => (
-          <section
-            key={index}
-            className="w-full h-screen flex items-center justify-center"
-          >
-            <h1 className="text-4xl font-bold text-white">Section {index + 1}</h1>
-          </section>
-        ))}
-      </div>
+        <Link href={"/"} >
+          <p className="text-[1.5vw] font-medium tracking-wider">Designverse</p>
+        </Link>
+
+        <div>
+          <ul className="flex items-center justify-center gap-[3vw]">
+            <Link href={"#"}><li>Home</li></Link>
+            <Link href={"#"}><li>About</li></Link>
+            <Link href={"3"}><li>Work</li></Link>
+            <Link href={"#"}><li>Contact</li></Link>
+          </ul>
+        </div>
+        <div>
+          <button className="border-[2px] border-white text-white px-[2vw] py-[0.6vw] rounded-[30px] relative group">
+            <span className="w-full h-full bg-white/20  scale-x-0 duration-300 transition-all ease absolute group-hover:scale-x-[1] top-0 left-0 rounded-full "/>
+            <p>Contact</p>
+          </button>
+        </div>
+
+      </header>
+      <section className="h-[53vw] w-screen flex items-center justify-center px-[5vw]">
+        <div className="w-full">
+          <h1 className="text-[9.5vw] text-white font-medium uppercase w-full leading-[1.2]">The Birth of Digital Design</h1>
+        </div>
+        <div className="h-full w-full flex items-end justify-end pb-[6vw]">
+          <p className="text-[1.2vw] text-white w-[30vw]">From the first pixel to the earliest websites, digital design began as a tool for communication and creativity. Explore the roots of an ever-evolving art form that transformed how we interact with technology.</p>
+        </div>
+      </section>
+      <section className="w-screen h-[60vw] py-[5vw]">
+        <div className="w-full h-full relative">
+          <Image src={"/assets/designverse/img-1.jpg"} fill alt="img-1" />
+        </div>
+      </section>
+      <section className="w-screen h-full flex flex-col items-center justify-center">
+        <h2 className="text-[5vw] text-white text-center">
+          The Rise of User Experience
+        </h2>
+        <div className="flex items-center justify-between w-full py-[5vw] px-[8vw]">
+          <p className="text-[2vw] text-white text-center w-[35vw]">As the digital world grew, so did the need for intuitive interfaces. User experience became a cornerstone, ensuring that design not only looked good but also felt seamless and engaging.</p>
+          <div className="w-[40vw] h-[30vw] relative">
+            <Image src={"/assets/designverse/img-2.png"} alt="img-2" fill className="rounded-[10px]" />
+          </div>
+        </div>
+      </section>
+      <section className="h-full w-full px-[8vw] py-[5vw]">
+        <div className="border-[2px] border-white w-[30vw] h-full px-[3vw] py-[2vw] rounded-[10px]">
+          <h3 className="text-[4vw] text-white leading-[1.2]">
+            The Age of Motion and Interactivity
+          </h3>
+          <p className="text-[1.2vw] text-white mt-[3vw]">With advancements in technology, animation and interactivity became essential. Designers began crafting experiences that responded to users, adding depth and dynamism to digital platforms.</p>
+
+        </div>
+
+      </section>
+      <section className="w-full h-full flex items-end justify-end px-[5vw] py-[5vw]">
+        <div className="relative h-[30vw] w-[40vw] border border-white rounded-[10px]">
+          <Image src={"/assets/designverse/img-3.jpg"} fill alt="image" className="rounded-[10px] p-3" />
+        </div>
+      </section>
+      <section className="w-screen h-full text-center">
+        <div>
+          <h3 className="text-[4vw] text-white leading-[1.2]">
+            The Age of Motion and Interactivity
+          </h3>
+        </div>
+        <div className="flex items-center justify-center gap-[7vw] py-[8vw]">
+          <div className="border border-white rounded-[10px] w-[25vw] p-[2vw]">
+            <h4 className="text-[3vw] text-white">Typography</h4>
+            <p className="text-[1.2vw] text-white mt-[3vw]">Typography shapes the voice of digital content, blending readability with aesthetics to enhance user experience.</p>
+
+          </div>
+          <div className="border border-white rounded-[10px] w-[25vw] p-[2vw]">
+            <h4 className="text-[3vw] text-white">Color Theory</h4>
+            <p className="text-[1.2vw] text-white mt-[3vw]">Colors evoke emotions and guide users through digital spaces, making design both functional and visually appealing.</p>
+
+          </div>
+          <div className="border border-white rounded-[10px] w-[25vw] p-[2vw]">
+            <h4 className="text-[3vw] text-white">Motion Design</h4>
+            <p className="text-[1.2vw] text-white mt-[3vw]">Animations and transitions bring designs to life, adding depth and engagement to user interactions.</p>
+
+          </div>
+
+        </div>
+
+      </section>
+      <section className="w-screen h-full flex flex-col items-end justify-start gap-[3vw] px-[5vw]">
+        <p className="stroke-text text-[8vw]  font-medium">INSPIRE</p>
+        <p className="stroke-text text-[8vw]  font-medium">INNOVATE</p>
+        <p className="stroke-text text-[8vw]  font-medium">IMAGINE</p>
+        <p className="stroke-text text-[8vw]  font-medium">CREATE</p>
+        <p className="stroke-text text-[8vw]  font-medium">EVOLVE</p>
+        <p className="stroke-text text-[8vw]  font-medium">DESIGN</p>
+        <p className="stroke-text text-[8vw]  font-medium">CRAFT</p>
+        <p className="stroke-text text-[8vw]  font-medium">TRANSFORM</p>
+
+      </section>
+      <section className="h-full w-full px-[8vw] py-[5vw]">
+        <div className="border-[2px] border-white w-[30vw] h-full px-[3vw] py-[2vw] rounded-[10px]">
+          <h3 className="text-[4vw] text-white leading-[1.2]">
+            Minimalism and Beyond
+          </h3>
+          <p className="text-[1.2vw] text-white mt-[3vw]">The modern era saw a shift towards simplicity, with clean lines and functional design. But digital design continues to evolve, blending minimalism with bold experimentation and immersive experiences.</p>
+        </div>
+
+      </section>
+      <section className="w-screen h-[65vw] py-[5vw] flex items-center justify-center">
+        <div className="w-[90%] h-full relative">
+          <Image src={"/assets/designverse/img-4.png"} fill alt="img-1" className="rounded-[20px]" />
+        </div>
+      </section>
+      <section className="w-screen h-full flex flex-col items-center justify-center">
+        <h2 className="text-[5vw] text-white text-center">
+          The Fusion of Creativity and Code
+        </h2>
+        <div className="flex items-center justify-between w-full py-[5vw] px-[8vw]">
+          <p className="text-[2vw] text-white text-center w-[35vw]">Digital design today is where creativity meets technology. Artists and developers collaborate to build immersive experiences, pushing the boundaries of what’s possible in the digital realm.</p>
+          <div className="w-[35vw] h-[25vw] relative">
+            <Image src={"/assets/designverse/img-5.png"} alt="img-2" fill className="rounded-[10px]" />
+          </div>
+        </div>
+      </section>
+      <section className="w-screen h-full py-[5vw]">
+        <p className="text-[7.5vw] stroke-text">Crafting Tomorrow's Designs</p>
+
+      </section>
+
+      <footer className="w-screen flex items-center justify-between text-white text-[1.3vw] bg-black/30 py-[1.5vw] px-[2vw] ">
+
+        <Link href={"/"} >
+          <p className="text-[1.5vw] font-medium tracking-wider">Designverse</p>
+        </Link>
+        <div>
+          <p className="text-[1.2vw] text-white">
+            © 2025 Digital Design Journey
+          </p>
+        </div>
+        <div>
+          <ul className="flex items-center justify-center gap-[3vw]">
+            <Link href={"#"}><li>Twitter</li></Link>
+            <Link href={"#"}><li>Github</li></Link>
+            <Link href={"3"}><li>Linkedin</li></Link>
+          </ul>
+        </div>
+      </footer>
+
+
     </>
+    </ReactLenis>
   );
 };
 

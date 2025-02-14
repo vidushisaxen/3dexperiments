@@ -39,15 +39,29 @@ export const UsefulProvider = (props) => {
       }, 500); 
     }
   };
+
+ 
+  const handleKeyDown = (e) => {
+    setWheelOrArrow("arrow");
+    if (e.key === "ArrowLeft") {
+      setPrevPage(++prevPage);
+      setLastAction("prev");
+    } else if (e.key === "ArrowRight") {
+      setNextPage(++nextPage);
+      setLastAction("next");
+    }
+  };
   
   const updateToFalse = () => {
     setHasDetectedDirection(false);
   };
 
   useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("wheel", handleWheel);
 
     return () => {
+      window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("wheel", handleWheel);
     };
   }, [hasDetectedDirection]);

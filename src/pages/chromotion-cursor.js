@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const AnimatedBackground = () => {
+const Chromotion = () => {
   const canvasRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const circlesRef = useRef([]);
@@ -270,4 +270,4 @@ const AnimatedBackground = () => {
   );
 };
 
-export default AnimatedBackground;
+export default Chromotion;

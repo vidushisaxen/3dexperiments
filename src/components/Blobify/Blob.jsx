@@ -34,6 +34,12 @@ const Blob = ({ material, map, geometry }) => {
   const textures = useTexture(texturesArray);
   const texture = textures[map];
 
+  const [positionSpring, setPositionSpring] = useSpring(() => ({
+    position: [0, 0, 0],
+    config: { tension: 50, friction: 14 },
+  }));
+
+  // State to hold the current rotation
   const [currentRotation, setCurrentRotation] = useState([0, 0, 0]);
 
   const [rotationSpring, setRotationSpring] = useSpring(() => ({
@@ -46,15 +52,32 @@ const Blob = ({ material, map, geometry }) => {
     const deltaX = e.deltaX;
 
     if (!isWheelEventTriggered) {
+      setPositionSpring((prev) => {
+        const currentPosition = prev.position || [0, 0, 0];
+        let newPosition = [...currentPosition];
+
+        if (deltaY < 0 || deltaX < 0) {
+          if (deltaY < -5 || deltaX < -5) {
+            newPosition[0] += 0.7;
+          }
+        } else if (deltaY > 0 || deltaX > 0) {
+          if (deltaY > 5 || deltaX > 5) {
+            newPosition[0] -= 0.7;
+          }
+        }
+
+        return { position: newPosition };
+      });
+
       setCurrentRotation((prevRotation) => {
         let newRotation = [...prevRotation];
 
         if (deltaY < 0 || deltaX < 0) {
-          if (deltaY < -4 || deltaX < -4) {
+          if (deltaY < -7 || deltaX < -7) {
             newRotation[1] += Math.PI/2 ;
           }
         } else if (deltaY > 0 || deltaX > 0) {
-          if (deltaY > 4 || deltaX > 4) {
+          if (deltaY > 7 || deltaX > 7) {
             newRotation[1] -= Math.PI/2 ;
           }
         }
@@ -67,6 +90,7 @@ const Blob = ({ material, map, geometry }) => {
 
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
+        setPositionSpring({ position: [0, 0, 0] });
         isWheelEventTriggered = false;
       }, 100);
     }
@@ -85,6 +109,7 @@ const Blob = ({ material, map, geometry }) => {
     <animated.mesh
       ref={meshRef}
       scale={scale}
+      position={positionSpring.position}
       rotation={rotationSpring.rotation}
       frustumCulled={false}
     >

@@ -8,14 +8,16 @@ import { animated } from "@react-spring/web";
 import { BlobSetting } from "./utils/blobSetting";
 import { pages } from "./Text/data";
 import useUsefulHooks from "./hooks/useWheel";
+import Texts from "./Text/Texts";
 
 const SphereCanvas = ({ current, setCurrent }) => {
   const { prevPage, nextPage, lastAction } = useUsefulHooks();
 
-  const {bg, ambient, lights, ...setting } = useMemo(
-    () => BlobSetting[pages[current].name],
-    [nextPage, prevPage, current]
+  const { bg, ambient, lights, ...setting } = useMemo(
+    () => BlobSetting[pages[current]?.name] || {}, 
+    [current]
   );
+  
 
   return (
     <animated.div
